@@ -15,4 +15,9 @@ jobs:
       uses: actions/checkout@v2
     - name: Building docker image
       run: docker build . --file dockerfile --tag my-nginx-image:$(date +%s)
-
+    - name: Push docker image
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: ${{ env.IMAGE_REPOSITORY }}
