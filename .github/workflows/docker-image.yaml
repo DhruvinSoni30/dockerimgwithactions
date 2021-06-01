@@ -1,0 +1,17 @@
+name: Docker Image for Nginx
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  
+  build image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions:checkout@v2
+    - name: Building docker image
+      run: docker build . --file dockerfile --tag my-nginx-image:$(date +%s)
+
